@@ -18,6 +18,16 @@ type Config struct {
 	TracingSampleRate float64 `env:"TRACING_SAMPLERATE" envDefault:"0.01"`
 	TracingService    string  `env:"TRACING_SERVICE" envDefault:"katalog-agent"`
 	TracingVersion    string  `env:"TRACING_VERSION"`
+
+	// Indoor Monitor Hosts (comma-separated list of host URLs)
+	Hosts         []string `env:"HOSTS" envSeparator:","`
+	PollInterval  int      `env:"POLL_INTERVAL" envDefault:"60"` // seconds
+
+	// InfluxDB Configuration
+	InfluxURL    string `env:"INFLUX_URL"`
+	InfluxToken  string `env:"INFLUX_TOKEN"`
+	InfluxOrg    string `env:"INFLUX_ORG"`
+	InfluxBucket string `env:"INFLUX_BUCKET"`
 }
 
 func NewConfig() (*Config, error) {
